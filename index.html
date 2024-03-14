@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mouse Pointer Effect</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: black;
+            overflow: hidden;
+        }
+
+        #circle {
+            position: absolute;
+            width: 160px; /* Increased size */
+            height: 160px; /* Increased size */
+            background: radial-gradient(circle, rgb(232, 192, 59), black); /* Fading effect */
+            border-radius: 50%;
+            pointer-events: none;
+            transition: transform 0.1s ease, opacity 0.3s ease; /* Added opacity transition */
+            opacity: 0.5; /* Initial opacity */
+        }
+
+        #hi-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 3rem;
+            color: rgb(0, 0, 0);
+        }
+    </style>
+</head>
+<body>
+    <div id="circle"></div>
+    <div id="hi-text">Hi!<br>I built this website for this enterprise!<br>Yet I wasn't sympathised with or respected in my worst times<br>I hate to call you my friend due!<br>Hope you find this message someday<br>I'll come back for you<br>And I'll come back hard</div>
+    <
+    
+
+    <script>
+        const circle = document.getElementById('circle');
+        const hiText = document.getElementById('hi-text');
+
+        document.addEventListener('mousemove', (e) => {
+            const x = e.clientX;
+            const y = e.clientY;
+            circle.style.transform = `translate(${x - 30}px, ${y - 30}px)`; /* Adjusted position */
+            const distance = Math.sqrt((x - window.innerWidth / 2) ** 2 + (y - window.innerHeight / 2) ** 2);
+            const maxDistance = Math.sqrt((window.innerWidth / 2) ** 2 + (window.innerHeight / 2) ** 2);
+            const opacity = 1 - distance / maxDistance;
+            circle.style.opacity = opacity;
+        });
+    </script>
+</body>
+</html>
